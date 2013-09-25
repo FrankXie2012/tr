@@ -16,6 +16,11 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails'
+end
+
 group :doc do
   gem 'sdoc', require: false
 end
