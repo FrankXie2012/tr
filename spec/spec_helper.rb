@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -40,5 +41,55 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end
+  end
+
   config.include FactoryGirl::Syntax::Methods
+end
+
+def read_fixture(name)
+  File.open(File.join(Rails.root, 'spec', 'fixtures', name))
+end
+
+def get_file_url(name)
+  File.join(Rails.root, 'spec', 'fixtures', name)
+end
+
+def get_file_store
+  File.join(Rails.root, 'spec', 'fixtures')
+end
+
+
+StorageUploader
+CoverUploader
+
+if defined?(CarrierWave)
+  CarrierWave::Uploader::Base.descendants.each do |klass|
+    next if klass.anonymous?
+    klass.class_eval do
+      def cache_dir
+        "#{Rails.root}/spec/support/uploads/tmp"
+      end
+
+      def store_dir
+        "#{Rails.root}/spec/support/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      end
+    end
+  end
 end

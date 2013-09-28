@@ -1,0 +1,55 @@
+body {
+  background-color: #e0e0e0;
+}
+
+.banner {
+  width: 100%;
+  background-color: #8470FF;
+  height: 80px;
+  .header {
+    height: 100%;
+    width: 960px;
+    background-color: #B0C4DE;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.main {
+  margin-right: auto;
+  margin-left: auto;
+  width: 960px;
+  height: auto;
+  .path {
+    width: 100%;
+    height: 40px;
+    background-color: #FFDEAD;
+  }
+  .nearly_book {
+    width: 100%;
+    height: 200px;
+    background-color: #6A5ACD;
+  }
+  .bast_book {
+    width: 100%;
+    height: 250px;
+    background-color: #708090;
+  }
+  .contenter{
+    width: 100%;
+  }
+}
+
+.footer {
+  height: 100px;
+  width: 100%;
+  background-color: #fff;
+  .footer_wrap {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+  }
+}
+
+.clear {
+  clear:both
+}

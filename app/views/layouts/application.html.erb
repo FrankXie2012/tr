@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Tr</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= yield :title || "tr"%></title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="banner">
+      <div class="header">
+        logo
+      </div>
+    </div>
+    <div class="main">
 
-<%= yield %>
+<!--       <div class="path">
+        <span>Path</span>
+      </div> -->
 
-</body>
+      <div class="contenter">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer_wrap">
+        Copyright
+      </div>
+    </div>
+  </body>
 </html>

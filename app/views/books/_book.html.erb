@@ -1,0 +1,11 @@
+<a href="#" target="_blank">
+  <div id="book_<%= book.id%>" class="book">
+    <div class="book_name">
+      <span><%= book.name.gsub(/[_|.]/, " ")%></span>
+    </div>
+    <%= image_tag book.cover.medium.url%>
+    <div class="book_info">
+      fdsa
+    </div>
+  </div>
+</a>
