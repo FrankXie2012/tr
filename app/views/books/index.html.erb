@@ -1,0 +1,15 @@
+<% content_for :title do%>
+  book_list
+<%end%>
+<div class="book_list">
+  <% @books.in_groups(4).each do |group|%>
+    <div class="col_strip">
+      <% group.each do |book|%>
+        <%if book %>
+          <%= render partial: "book", locals: {book: book}%>
+        <% end %>
+      <%end%>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+</div>
