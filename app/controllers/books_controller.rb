@@ -6,15 +6,22 @@ class BooksController < ApplicationController
   end
 
   def new
+
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def show
+
   end
 
   def create
     @book = Book.new
     @book.storage = params[:storage]
     respond_to do |format|
-      if @book.save
-        @book.cover = ParesPdf.new(@book.storage.current_path).get_cover
-        @book.save
+      if @book.save_upload_file
         format.json {render json: @book, status: 200}
       else
         format.json {render json: @book.errors[:storage][0], status: 406}

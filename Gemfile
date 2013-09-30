@@ -32,6 +32,8 @@ gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', require: 'bootstrap-rails'
 
 gem 'dropzonejs-rails4'
 
+gem 'acts-as-taggable-on'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'factory_girl_rails'

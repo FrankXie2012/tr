@@ -1,11 +1,13 @@
-<a href="#" target="_blank">
-  <div id="book_<%= book.id%>" class="book">
-    <div class="book_name">
-      <span><%= book.name.gsub(/[_|.]/, " ")%></span>
-    </div>
-    <%= image_tag book.cover.medium.url%>
-    <div class="book_info">
-      fdsa
-    </div>
+<div id="book_<%= book.id%>" class="book">
+  <div class="book_name">
+    <h4><%= book.name%></h4>
   </div>
-</a>
+  <%= link_to image_tag(book.cover.medium.url), book_path(book), class: "book_img"%>
+  <div class="book_info">
+    <p class="text-right ">
+      <%= link_to "", edit_book_path(book), class: "glyphicon glyphicon-cog book_edit"%>
+    </p>
+  </div>
+</div>
+
+

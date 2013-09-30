@@ -1,0 +1,6 @@
+<div class="edit_book">
+  <%= simple_form_for @book do |f|%>
+    <%= f.input :name%>
+  <%end%>
+  <%= image_tag @book.cover.medium.url%>
+</div>
