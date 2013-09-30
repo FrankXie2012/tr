@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Book do
   let(:pdf_file){read_fixture("backbone.pdf")}
   describe "test the file store" do
-    let(:book){create(:book,storage: pdf_file)}
+    let(:book){create(:book,storage: pdf_file,name: nil)}
     let(:img_file){read_fixture("rails.png")}
     it "pdf file save and delete success" do
       book.storage = pdf_file
       book.save!
       book.storage.url.should eq("#{Rails.root}/spec/support/uploads/book/storage/#{book.id}/#{book.storage.identifier}")
-      book.name.should eq("backbone.pdf")
+      book.name.should eq("backbone")
       book.remove_storage!
     end
 
