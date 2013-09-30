@@ -1,4 +1,5 @@
 class ParesPdf
+  include CarrierWave::RMagick
 
   def initialize(pdf_url)
     @pdf_url = pdf_url
@@ -6,7 +7,10 @@ class ParesPdf
   end
 
   def get_cover
-    Docsplit.extract_images(@pdf_url, pages: "1", size: '1000x', format: [:png], output: @file_tmp)
-    File.open(File.join(@file_tmp, @pdf_url.split("/").last.sub(/.pdf/, "_1.png")))
+    image_path = File.join(@file_tmp, @pdf_url.split("/").last.sub(/.pdf/, "_1.png"))
+    Docsplit.extract_images(@pdf_url, pages: "1", format: [:png], output: @file_tmp)
+    File.open image_path
+  ensure
+    File.delete image_path
   end
 end
